@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ayo Belajar Gaya dan Gerak - Kelas 4 SD</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Fredoka & Quicksand (Sangat ramah anak) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --sky-light: #7dd3fc;
+      --sky-dark: #38bdf8;
+      --grass-light: #4ade80;
+      --grass-dark: #16a34a;
+    }
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: #f0f9ff;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4, .font-kids {
+      font-family: 'Fredoka', sans-serif;
+    }
+
+    /* Cover Kustom Menggunakan Gambar Imgur Pilihan Baru */
+    .home-cover-bg {
+      background: url('https://i.imgur.com/P0O9zuw.png'), linear-gradient(to bottom, #7dd3fc 0%, #e0f2fe 50%, #bbf7d0 100%);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animasi Matahari Bersinar */
+    .sun-glow {
+      animation: glow 4s infinite ease-in-out;
+    }
+    @keyframes glow {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px #f59e0b); }
+      50% { transform: scale(1.08); filter: drop-shadow(0 0 35px #fbbf24); }
+    }
+
+    /* Animasi Awan Melintas Parallax */
+    .cloud-slow { animation: floatCloud 35s infinite linear; }
+    .cloud-fast { animation: floatCloud 20s infinite linear; }
+    @keyframes floatCloud {
+      from { transform: translateX(-150px); }
+      to { transform: translateX(1100px); }
+    }
+
+    /* Floating Elemen Sains */
+    .float-slow { animation: floatSlow 6s infinite ease-in-out; }
+    .float-fast { animation: floatFast 4s infinite ease-in-out; }
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(8deg); }
+    }
+    @keyframes floatFast {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(-8deg); }
+    }
+
+    /* Bola Memantul Realistis */
+    .ball-bounce {
+      animation: ballBounce 1.5s infinite ease-in-out;
+    }
+    @keyframes ballBounce {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    .shadow-pulse {
+      animation: shadowPulse 1.5s infinite ease-in-out;
+    }
+    @keyframes shadowPulse {
+      0%, 100% { transform: scale(1); opacity: 0.2; }
+      50% { transform: scale(0.6); opacity: 0.08; }
+    }
+
+    /* Roda Sepeda Berputar */
+    .spin-wheel {
+      animation: spin 2s infinite linear;
+      transform-origin: center;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Pendorong Meja (Aksi Tarik-Ulur) */
+    .push-pull {
+      animation: pushPull 2.5s infinite ease-in-out;
+    }
+    @keyframes pushPull {
+      0%, 100% { transform: translateX(0px); }
+      50% { transform: translateX(10px); }
+    }
+
+    /* Tombol Mulai Belajar dengan Efek Sapuan Cahaya Berkilau */
+    .shine-btn {
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 0px #047857, 0 15px 25px rgba(16, 185, 129, 0.5);
+      transition: all 0.1s ease;
+    }
+    .shine-btn::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 30%;
+      height: 200%;
+      background: rgba(255, 255, 255, 0.45);
+      transform: rotate(30deg);
+      animation: shineSweep 4s infinite linear;
+    }
+    @keyframes shineSweep {
+      0% { left: -60%; }
+      30%, 100% { left: 130%; }
+    }
+    .shine-btn:active {
+      transform: translateY(6px);
+      box-shadow: 0 4px 0px #047857, 0 8px 10px rgba(16, 185, 129, 0.2);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+  <!-- TOP BAR -->
+  <header class="bg-white border-b-4 border-sky-200 shadow-md p-4 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-2 cursor-pointer" onclick="goToPage('home')">
+        <div class="bg-blue-500 p-2.5 rounded-2xl text-white shadow-lg">
+          <i class="fa-solid fa-atom text-xl animate-spin" style="animation-duration: 6s;"></i>
+        </div>
+        <h1 class="text-blue-600 text-lg sm:text-2xl font-black tracking-tight">MEDIA INTERAKTIF IPA</h1>
+      </div>
+      
+      <div class="flex items-center gap-2">
+        <button onclick="readAloudPage()" class="bg-yellow-400 hover:bg-yellow-500 text-yellow-950 font-black py-2 px-4 rounded-full shadow-md flex items-center gap-2 text-xs sm:text-sm border-b-4 border-yellow-600 active:border-b-0 transition-all">
+          <i class="fa-solid fa-volume-high"></i> <span class="hidden sm:inline">Dengarkan Suara</span>
+        </button>
+        <button id="nav-home-btn" onclick="goToPage('menu-utama')" class="hidden bg-red-500 hover:bg-red-600 text-white p-2.5 rounded-full shadow-md border-b-4 border-red-700 active:border-b-0 transition-all">
+          <i class="fa-solid fa-house"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-4 flex flex-col justify-center items-center">
+    
+    <!-- ================= 1. COVER HALAMAN AWAL ================= -->
+    <section id="page-home" class="page-section w-full min-h-[83vh] rounded-[45px] home-cover-bg border-8 border-white shadow-2xl flex flex-col justify-between p-6 relative">
+      
+      <!-- Overlap Transparan Halus untuk Membantu Keterbacaan Konten Cover -->
+      <div class="absolute inset-0 bg-gradient-to-b from-sky-900/10 via-transparent to-slate-900/40 pointer-events-none rounded-[37px]"></div>
+
+      <!-- Ornamen Alam & Langit Hack -->
+      <div class="absolute top-4 left-6 z-10 sun-glow">
+        <!-- Matahari Tersenyum -->
+        <svg viewBox="0 0 100 100" class="w-16 h-16 sm:w-24 sm:h-24">
+          <circle cx="50" cy="50" r="25" fill="#f59e0b" />
+          <g stroke="#fbbf24" stroke-width="6" stroke-linecap="round">
+            <line x1="50" y1="10" x2="50" y2="2" /><line x1="50" y1="90" x2="50" y2="98" />
+            <line x1="10" y1="50" x2="2" y2="50" /><line x1="90" y1="50" x2="98" y2="50" />
+            <line x1="22" y1="22" x2="16" y2="16" /><line x1="78" y1="78" x2="84" y2="84" />
+          </g>
+          <circle cx="42" cy="45" r="3.5" fill="#1e293b" />
+          <circle cx="58" cy="45" r="3.5" fill="#1e293b" />
+          <path d="M 40 56 Q 50 66 60 56" stroke="#1e293b" stroke-width="3" fill="none" stroke-linecap="round" />
+        </svg>
+      </div>
+
+      <!-- Awan Parallax Bergerak -->
+      <div class="cloud-slow top-6 left-12 text-6xl text-white opacity-80"><i class="fa-solid fa-cloud"></i></div>
+      <div class="cloud-fast top-20 left-[40%] text-5xl text-white opacity-75" style="animation-delay: -5s;"><i class="fa-solid fa-cloud"></i></div>
+
+      <!-- Lencana Hijau Kelas 4 SD -->
+      <div class="absolute top-6 right-6 z-10 bg-emerald-600 border-4 border-white rounded-[25px] p-3 text-white text-center shadow-2xl font-kids transform rotate-6 hover:rotate-0 transition-transform">
+        <span class="text-xs uppercase font-bold tracking-wider block">Kelas</span>
+        <span class="text-4xl font-black block leading-none">4</span>
+        <span class="text-xs uppercase font-bold tracking-widest block">SD</span>
+      </div>
+
+      <!-- KLIK AREA TRANSPARAN ATAS & TENGAH (MEMBERI RUANG PENUH UNTUK JUDUL & ARTWORK BAWAAN IMGUR) -->
+      <div class="w-full flex-grow z-10 my-4 flex items-center justify-center min-h-[250px] sm:min-h-[350px]">
+        <!-- Ruang ini dibiarkan kosong agar artwork background Imgur terlihat jernih, utuh, dan tidak tertumpuk teks HTML -->
+      </div>
+
+      <!-- TOMBOL UTAMA "MULAI BELAJAR" -->
+      <div class="z-20 mb-6 w-full max-w-md mx-auto px-4 flex flex-col items-center">
+        <button onclick="goToPage('menu-utama')" class="shine-btn w-full bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white text-2xl sm:text-3xl font-black py-5 px-8 rounded-[30px] flex items-center justify-center gap-3 transition-all animate-bounce">
+          <i class="fa-solid fa-compass text-3xl animate-spin" style="animation-duration: 4s;"></i>
+          <span>MULAI BELAJAR</span>
+        </button>
+        <span class="text-white font-bold text-xs sm:text-sm mt-3 px-4 py-1.5 bg-black/40 rounded-full backdrop-blur-md drop-shadow-md">
+          Tekan tombol di atas untuk memulai petualangan! 🚀
+        </span>
+      </div>
+
+      <!-- Ikon Fisika Mengambang Lembut di Sudut-Sudut -->
+      <div class="absolute bottom-24 left-[8%] text-yellow-300 text-4xl opacity-50 float-slow"><i class="fa-solid fa-lightbulb"></i></div>
+      <div class="absolute top-36 right-[10%] text-blue-400 text-4xl opacity-50 float-fast"><i class="fa-solid fa-magnet rotate-12"></i></div>
+      <div class="absolute bottom-36 right-[5%] text-red-400 text-4xl opacity-50 float-slow"><i class="fa-solid fa-gear"></i></div>
+
+    </section>
+
+    <!-- ================= 2. PETA PETUALANGAN (MENU UTAMA) ================= -->
+    <section id="page-menu-utama" class="page-section hidden w-full min-h-[83vh] rounded-[45px] home-cover-bg border-8 border-white shadow-2xl flex flex-col justify-between p-6 relative">
+      
+      <!-- Overlap Transparan Halus untuk Membantu Keterbacaan Konten Menu Utama -->
+      <div class="absolute inset-0 bg-gradient-to-b from-sky-900/30 via-transparent to-slate-900/50 pointer-events-none rounded-[37px]"></div>
+
+      <!-- HEADER JUDUL MENU UTAMA -->
+      <div class="text-center z-10 mt-4 w-full flex flex-col items-center">
+        <div class="bg-white/95 backdrop-blur-md p-4 sm:p-5 rounded-[30px] border-4 border-sky-400 inline-block shadow-2xl relative">
+          <span class="text-5xl">🗺️</span>
+          <h2 class="text-2xl sm:text-4xl font-black text-blue-600 mt-2">PETA PETUALANGAN BELAJAR</h2>
+          <p class="text-slate-700 text-sm mt-1 max-w-md mx-auto font-bold">Pilih salah satu pulau petualangan sains di bawah untuk mulai bermain!</p>
+        </div>
+      </div>
+
+      <!-- GRID MENU UTAMA (8 MENU SEIMBANG) -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 my-6 relative z-10 max-w-5xl mx-auto w-full">
+        <!-- 1. Cara Bermain -->
+        <button onclick="goToPage('petunjuk')" class="bg-white/90 backdrop-blur-md hover:bg-white p-4 rounded-3xl border-4 border-amber-400 shadow-xl transition-all hover:-translate-y-2 flex flex-col items-center justify-center text-center">
+          <div class="bg-amber-500 text-white p-3 rounded-full mb-2 shadow-md"><i class="fa-solid fa-book-open text-xl"></i></div>
+          <h4 class="font-black text-amber-800 text-xs sm:text-sm">Cara Bermain</h4>
+        </button>
+
+        <!-- 2. Tujuan -->
+        <button onclick="goToPage('tujuan')" class="bg-white/90 backdrop-blur-md hover:bg-white p-4 rounded-3xl border-4 border-indigo-400 shadow-xl transition-all hover:-translate-y-2 flex flex-col items-center justify-center text-center">
+          <div class="bg-indigo-500 text-white p-3 rounded-full mb-2 shadow-md"><i class="fa-solid fa-bullseye text-xl"></i></div>
+          <h4 class="font-black text-indigo-800 text-xs sm:text-sm">Tujuan Belajar</h4>
+        </button>
+
+        <!-- 3. Materi -->
+        <button onclick="goToPage('materi')" class="bg-white/90 backdrop-blur-md hover:bg-white p-4 rounded-3xl border-4 border-blue-400 shadow-xl transition-all hover:-translate-y-2 flex flex-col items-center justify-center text-center">
+          <div class="bg-blue-500 text-white p-3 rounded-full mb-2 shadow-md"><i class="fa-solid fa-graduation-cap text-xl"></i></div>
+          <h4 class="font-black text-blue-800 text-xs sm:text-sm">Materi Belajar</h4>
+        </button>
+
+        <!-- 4. Video -->
+        <button onclick="goToPage('video')" class="bg-white/90 backdrop-blur-md hover:bg-white p-4 rounded-3xl border-4 border-red-400 shadow-xl transition-all hover:-translate-y-2 flex flex-col items-center justify-center text-center">
+          <div class="bg-red-500 text-white p-3 rounded-full mb-2 shadow-md"><i class="fa-solid fa-video text-xl animate-pulse"></i></div>
+          <h4 class="font-black text-red-800 text-xs sm:text-sm">Video Belajar</h4>
+        </button>
+
+        <!-- 5. Game Simulasi -->
+        <button onclick="goToPage('simulasi')" class="bg-white/90 backdrop-blur-md hover:bg-white p-4 rounded-3xl border-4 border-violet-400 shadow-xl transition-all hover:-translate-y-2 flex flex-col items-center justify-center text-center">
+          <div class="bg-violet-500 text-white p-3 rounded-full mb-2 shadow-md"><i class="fa-solid fa-gamepad text-xl"></i></div>
+          <h4 class="font-black text-violet-800 text-xs sm:text-sm">Tantangan Game</h4>
+        </button>
+
+        <!-- 6. Kuis -->
+        <button onclick="goToPage('kuis')" class="bg-white/90 backdrop-blur-md hover:bg-white p-4 rounded-3xl border-4 border-emerald-400 shadow-xl transition-all hover:-translate-y-2 flex flex-col items-center justify-center text-center">
+          <div class="bg-emerald-500 text-white p-3 rounded-full mb-2 shadow-md"><i class="fa-solid fa-clipboard-question text-xl"></i></div>
+          <h4 class="font-black text-emerald-800 text-xs sm:text-sm">Kuis Sains</h4>
+        </button>
+
+        <!-- 7. Refleksi -->
+        <button onclick="goToPage('refleksi')" class="bg-white/90 backdrop-blur-md hover:bg-white p-4 rounded-3xl border-4 border-rose-400 shadow-xl transition-all hover:-translate-y-2 flex flex-col items-center justify-center text-center">
+          <div class="bg-rose-500 text-white p-3 rounded-full mb-2 shadow-md"><i class="fa-solid fa-heart text-xl"></i></div>
+          <h4 class="font-black text-rose-800 text-xs sm:text-sm">Refleksi Diri</h4>
+        </button>
+
+        <!-- 8. Profil Pengembang -->
+        <button onclick="goToPage('profil')" class="bg-white/90 backdrop-blur-md hover:bg-white p-4 rounded-3xl border-4 border-teal-400 shadow-xl transition-all hover:-translate-y-2 flex flex-col items-center justify-center text-center">
+          <div class="bg-teal-500 text-white p-3 rounded-full mb-2 shadow-md"><i class="fa-solid fa-user-gear text-xl"></i></div>
+          <h4 class="font-black text-teal-800 text-xs sm:text-sm">Profil Pengembang</h4>
+        </button>
+      </div>
+
+      <!-- FOOTER MENU UTAMA -->
+      <div class="flex justify-center mt-4 relative z-10">
+        <button onclick="goToPage('home')" class="bg-slate-800/80 backdrop-blur-md hover:bg-slate-950 text-white font-black py-2.5 px-6 rounded-full text-xs shadow-lg border-2 border-white transition-all">
+          <i class="fa-solid fa-arrow-left mr-1"></i> Kembali ke Sampul Depan
+        </button>
+      </div>
+    </section>
+
+    <!-- ================= 3. CARA BERMAIN (PETUNJUK) ================= -->
+    <section id="page-petunjuk" class="page-section hidden w-full max-w-3xl bg-white p-6 sm:p-8 rounded-3xl border-4 border-amber-400 shadow-xl">
+      <div class="text-center mb-6">
+        <span class="text-5xl">📖</span>
+        <h2 class="text-3xl font-black text-amber-500 mt-2">Petunjuk Penggunaan</h2>
+        <p class="text-slate-500 text-sm">Bagaimana cara memainkan media sains interaktif ini?</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6 text-left">
+        <div class="flex items-start gap-3 p-4 bg-amber-50 rounded-2xl border border-amber-200">
+          <div class="bg-amber-500 text-white p-2.5 rounded-xl"><i class="fa-solid fa-volume-high"></i></div>
+          <div>
+            <h4 class="font-bold text-amber-800 text-sm sm:text-base">Dengarkan Suara</h4>
+            <p class="text-xs text-slate-600 mt-0.5">Tekan tombol kuning di kanan atas agar asisten sains membacakan tulisan halaman untukmu!</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3 p-4 bg-amber-50 rounded-2xl border border-amber-200">
+          <div class="bg-blue-500 text-white p-2.5 rounded-xl"><i class="fa-solid fa-forward"></i></div>
+          <div>
+            <h4 class="font-bold text-blue-800 text-sm sm:text-base">Lanjut & Kembali</h4>
+            <p class="text-xs text-slate-600 mt-0.5">Tekan tombol hijau untuk lanjut belajar, atau tombol abu-abu untuk materi sebelumnya.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3 p-4 bg-amber-50 rounded-2xl border border-amber-200">
+          <div class="bg-rose-500 text-white p-2.5 rounded-xl"><i class="fa-solid fa-hand-pointer"></i></div>
+          <div>
+            <h4 class="font-bold text-rose-800 text-sm sm:text-base">Tombol Klik Interaktif</h4>
+            <p class="text-xs text-slate-600 mt-0.5">Jangan ragu mengklik tombol uji coba di materi sains untuk melihat perubahan gerak benda!</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3 p-4 bg-amber-50 rounded-2xl border border-amber-200">
+          <div class="bg-violet-500 text-white p-2.5 rounded-xl"><i class="fa-solid fa-house"></i></div>
+          <div>
+            <h4 class="font-bold text-violet-800 text-sm sm:text-base">Kembali ke Beranda</h4>
+            <p class="text-xs text-slate-600 mt-0.5">Klik logo rumah merah di pojok kanan atas untuk kembali ke menu utama.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-center mt-6">
+        <button onclick="goToPage('menu-utama')" class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-full shadow-md border-b-4 border-amber-700 active:border-b-0 active:translate-y-0.5 transition-all text-sm">
+          <i class="fa-solid fa-compass mr-2"></i> Ke Menu Utama
+        </button>
+      </div>
+    </section>
+
+    <!-- ================= 4. TUJUAN BELAJAR ================= -->
+    <section id="page-tujuan" class="page-section hidden w-full max-w-3xl bg-white p-6 sm:p-8 rounded-3xl border-4 border-indigo-400 shadow-xl">
+      <div class="text-center mb-6">
+        <span class="text-5xl">🎯</span>
+        <h2 class="text-3xl font-black text-indigo-500 mt-2">Tujuan Pembelajaran</h2>
+        <p class="text-slate-500 text-sm">Setelah belajar hari ini, kamu hebat jika berhasil:</p>
+      </div>
+
+      <div class="space-y-4 my-6">
+        <div class="flex items-center gap-4 p-4 bg-indigo-50 rounded-2xl border-l-4 border-indigo-500 shadow-sm">
+          <div class="bg-indigo-500 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center shrink-0 text-sm">1</div>
+          <p class="text-xs sm:text-sm text-slate-700 font-bold">Menjelaskan arti gaya dengan bahasamu sendiri secara percaya diri.</p>
+        </div>
+
+        <div class="flex items-center gap-4 p-4 bg-teal-50 rounded-2xl border-l-4 border-teal-500 shadow-sm">
+          <div class="bg-teal-500 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center shrink-0 text-sm">2</div>
+          <p class="text-xs sm:text-sm text-slate-700 font-bold">Menyebutkan bermacam-macam jenis gaya di sekitar kita (otot, gravitasi, gesek).</p>
+        </div>
+
+        <div class="flex items-center gap-4 p-4 bg-amber-50 rounded-2xl border-l-4 border-amber-500 shadow-sm">
+          <div class="bg-amber-500 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center shrink-0 text-sm">3</div>
+          <p class="text-xs sm:text-sm text-slate-700 font-bold">Membuktikan pengaruh gaya terhadap benda (bergerak, diam, ubah bentuk/arah).</p>
+        </div>
+      </div>
+
+      <div class="flex justify-center gap-4 mt-8">
+        <button onclick="goToPage('menu-utama')" class="bg-slate-500 hover:bg-slate-600 text-white font-bold py-3 px-6 rounded-full shadow-md text-sm">
+          Kembali
+        </button>
+        <button onclick="goToPage('materi')" class="bg-emerald-50 hover:bg-emerald-600 text-white font-bold py-3 px-8 rounded-full shadow-md text-sm flex items-center gap-2">
+          Mulai Materi <i class="fa-solid fa-circle-arrow-right"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- ================= 5. MENU MATERI UTAMA ================= -->
+    <section id="page-materi" class="page-section hidden w-full max-w-4xl bg-white p-4 sm:p-8 rounded-3xl border-4 border-blue-400 shadow-xl flex flex-col justify-between min-h-[500px]">
+      
+      <!-- Navigasi Tab Sub-Materi -->
+      <div class="flex flex-wrap gap-2 justify-center border-b pb-4 mb-4">
+        <button id="tab-mat-1" onclick="switchSubMateri(1)" class="tab-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-blue-500 text-white border-2 border-blue-600">
+          1. Arti Gaya
+        </button>
+        <button id="tab-mat-2" onclick="switchSubMateri(2)" class="tab-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-slate-100 text-slate-600 border-2 border-transparent">
+          2. Jenis Gaya
+        </button>
+        <button id="tab-mat-3" onclick="switchSubMateri(3)" class="tab-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-slate-100 text-slate-600 border-2 border-transparent">
+          3. Pengaruh Gaya
+        </button>
+      </div>
+
+      <!-- KONTEN SUB-MATERI 1 -->
+      <div id="sub-materi-1" class="sub-materi-content space-y-4">
+        <div class="text-center">
+          <h3 class="text-2xl font-bold text-blue-600">Apa sih itu Gaya? 🤔</h3>
+          <p class="text-slate-500 text-sm">Gaya dalam ilmu IPA memiliki arti khusus, bukan gaya berfoto ya!</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+          <div class="space-y-3 bg-blue-50 p-5 rounded-2xl border border-blue-200">
+            <p class="text-slate-700 leading-relaxed text-sm sm:text-base">
+              <strong>Gaya</strong> adalah <span class="bg-yellow-200 px-1 py-0.5 rounded font-bold">tarikan atau dorongan</span> yang diberikan kepada suatu benda sehingga benda tersebut dapat bergerak, berubah posisi, atau berubah bentuk.
+            </p>
+            <div class="space-y-2 mt-3 text-xs sm:text-sm text-slate-600">
+              <div class="flex items-center gap-2">
+                <span class="text-lg">👉</span> <span><strong>Dorongan:</strong> Contohnya menjauhkan benda (mendorong pintu/troli).</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-lg">👈</span> <span><strong>Tarikan:</strong> Contohnya mendekatkan benda (menarik koper/pintu).</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 p-4 rounded-2xl border-2 border-dashed border-slate-300 flex flex-col items-center">
+            <span class="text-xs text-amber-600 font-bold mb-2">Cobalah klik tombol interaktif di bawah:</span>
+            
+            <div class="h-32 w-full flex justify-center items-center relative overflow-hidden bg-white rounded-lg border">
+              <svg class="w-full h-full" viewBox="0 0 300 120">
+                <line x1="10" y1="90" x2="290" y2="90" stroke="#cbd5e1" stroke-width="4"/>
+                <g id="demo-box" class="transition-transform duration-500 ease-out transform translate-x-0">
+                  <rect x="120" y="40" width="50" height="50" fill="#f43f5e" rx="4" stroke="#e11d48" stroke-width="2"/>
+                  <text x="145" y="70" font-family="Fredoka" font-size="11" fill="#fff" text-anchor="middle">KOTAK</text>
+                  <circle cx="130" cy="90" r="6" fill="#334155"/>
+                  <circle cx="160" cy="90" r="6" fill="#334155"/>
+                </g>
+              </svg>
+            </div>
+
+            <div class="flex gap-2 mt-4 w-full">
+              <button onclick="animateDemoBox('dorong')" class="flex-1 bg-rose-500 hover:bg-rose-600 text-white font-bold py-2 rounded-xl text-xs shadow-md border-b-4 border-rose-700 active:border-b-0">
+                Beri Dorongan 👉
+              </button>
+              <button onclick="animateDemoBox('tarik')" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded-xl text-xs shadow-md border-b-4 border-blue-700 active:border-b-0">
+                👈 Beri Tarikan
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KONTEN SUB-MATERI 2 -->
+      <div id="sub-materi-2" class="sub-materi-content hidden space-y-4">
+        <div class="text-center">
+          <h3 class="text-2xl font-bold text-amber-500">Berbagai Jenis Gaya Terpopuler 🌍</h3>
+          <p class="text-slate-500 text-sm">Ada 3 jenis gaya utama yang sering kita gunakan sehari-hari:</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-2">
+          <div class="bg-emerald-50 p-4 rounded-2xl border-2 border-emerald-200 text-center">
+            <span class="text-3xl">💪</span>
+            <h4 class="font-bold text-emerald-800 text-base mt-2">Gaya Otot</h4>
+            <p class="text-xs text-slate-600 mt-2">Dihasilkan dari otot tubuh kita untuk mendorong, menarik, atau mengangkat barang.</p>
+            <span class="inline-block bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full mt-3">Contoh: Menendang Bola</span>
+          </div>
+
+          <div class="bg-indigo-50 p-4 rounded-2xl border-2 border-indigo-200 text-center">
+            <span class="text-3xl">🍎</span>
+            <h4 class="font-bold text-indigo-800 text-base mt-2">Gaya Gravitasi</h4>
+            <p class="text-xs text-slate-600 mt-2">Gaya tarik bumi yang menarik seluruh benda ke pusat bumi agar tidak melayang di udara.</p>
+            <span class="inline-block bg-indigo-100 text-indigo-800 text-[10px] font-bold px-2 py-0.5 rounded-full mt-3">Contoh: Mangga Jatuh</span>
+          </div>
+
+          <div class="bg-rose-50 p-4 rounded-2xl border-2 border-rose-200 text-center">
+            <span class="text-3xl">🛹</span>
+            <h4 class="font-bold text-rose-800 text-base mt-2">Gaya Gesek</h4>
+            <p class="text-xs text-slate-600 mt-2">Terjadi ketika dua permukaan benda saling bersentuhan. Menghambat laju gerakan benda.</p>
+            <span class="inline-block bg-rose-100 text-rose-800 text-[10px] font-bold px-2 py-0.5 rounded-full mt-3">Contoh: Rem Sepeda</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- KONTEN SUB-MATERI 3 -->
+      <div id="sub-materi-3" class="sub-materi-content hidden space-y-4">
+        <div class="text-center">
+          <h3 class="text-2xl font-bold text-indigo-600">Pengaruh Gaya terhadap Gerak ⚡</h3>
+          <p class="text-slate-500 text-sm">Gaya dapat memicu keajaiban pada benda-benda sekitar kita!</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="space-y-2 text-xs sm:text-sm text-slate-700">
+            <div class="p-2.5 bg-violet-50 rounded-xl border-l-4 border-violet-500">
+              <strong>1. Menggerakkan Benda Diam:</strong> Mendorong mobil mogok agar bergerak.
+            </div>
+            <div class="p-2.5 bg-violet-50 rounded-xl border-l-4 border-violet-500">
+              <strong>2. Menghentikan Benda Bergerak:</strong> Menarik tuas rem agar sepeda berhenti.
+            </div>
+            <div class="p-2.5 bg-violet-50 rounded-xl border-l-4 border-violet-500">
+              <strong>3. Mengubah Arah Gerak:</strong> Menyundul bola masuk ke dalam gawang.
+            </div>
+            <div class="p-2.5 bg-violet-50 rounded-xl border-l-4 border-violet-500">
+              <strong>4. Mengubah Bentuk Benda:</strong> Meremas botol minuman bekas.
+            </div>
+          </div>
+
+          <div class="bg-slate-50 p-4 rounded-2xl border-2 border-dashed border-slate-300 flex flex-col justify-center items-center">
+            <span class="text-xs text-indigo-700 font-bold mb-2">Simulasi Pengaruh Gaya:</span>
+            
+            <div class="w-full bg-white rounded-xl border p-4 h-36 flex flex-col justify-center items-center relative overflow-hidden">
+              <div id="demo-arah-box" class="flex flex-col items-center">
+                <svg class="w-32 h-16" viewBox="0 0 160 100">
+                  <circle id="demo-ball" cx="30" cy="50" r="12" fill="#3b82f6" class="transition-all duration-700 ease-in-out"/>
+                  <rect x="130" y="25" width="10" height="50" fill="#f59e0b" rx="2"/>
+                </svg>
+                <button onclick="animateBallDirection()" class="bg-amber-400 hover:bg-amber-500 text-amber-950 font-bold py-1 px-4 rounded-lg text-xs mt-1 border-b-2 border-amber-600 active:border-b-0">
+                  Pantulkan Bola ⚽
+                </button>
+              </div>
+
+              <div id="demo-bentuk-box" class="hidden flex flex-col items-center">
+                <svg class="w-32 h-16" viewBox="0 0 160 100">
+                  <ellipse id="demo-clay" cx="80" cy="50" rx="35" ry="30" fill="#10b981" class="transition-all duration-300"/>
+                </svg>
+                <button onclick="animateClayShape()" class="bg-emerald-50 hover:bg-emerald-600 text-white font-bold py-1 px-4 rounded-lg text-xs mt-1 border-b-2 border-emerald-700 active:border-b-0">
+                  Tekan Plastisin 🟢
+                </button>
+              </div>
+            </div>
+
+            <div class="flex gap-2 mt-2">
+              <button onclick="toggleRightDemo('arah')" class="text-[10px] bg-slate-200 text-slate-700 font-bold px-3 py-1 rounded-full hover:bg-slate-300">Pantul Bola</button>
+              <button onclick="toggleRightDemo('bentuk')" class="text-[10px] bg-slate-200 text-slate-700 font-bold px-3 py-1 rounded-full hover:bg-slate-300">Ubah Plastisin</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center border-t pt-4 mt-6">
+        <button id="mat-prev-btn" onclick="prevSubMateri()" class="bg-slate-400 hover:bg-slate-500 text-white font-bold py-2 px-5 rounded-full text-xs shadow-md flex items-center gap-1">
+          <i class="fa-solid fa-arrow-left"></i> Sebelumnya
+        </button>
+        <button id="mat-next-btn" onclick="nextSubMateri()" class="bg-emerald-50 hover:bg-emerald-600 text-white font-bold py-2 px-6 rounded-full text-xs shadow-md flex items-center gap-1">
+          Lanjut <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </section>
+
+
+    <!-- ================= 6. VIDEO PEMBELAJARAN (EMBEDDED YOUTUBE VIDEO DENGAN START TIME & TOMBOL KONTROL) ================= -->
+    <section id="page-video" class="page-section hidden w-full max-w-3xl bg-white p-6 sm:p-8 rounded-[40px] border-4 border-red-400 shadow-xl text-center flex flex-col justify-between min-h-[500px]">
+      <div class="space-y-4">
+        <span class="text-5xl animate-bounce">🎬</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-red-500">Bioskop Mini Gaya & Gerak</h2>
+        <p class="text-slate-500 text-sm max-w-md mx-auto">Mari menonton video pembelajaran sains Gaya dan Gerak Kelas 4 SD langsung di bawah ini!</p>
+
+        <!-- Televisi Frame dengan YouTube Embed -->
+        <div class="flex justify-center my-4 w-full">
+          <div class="w-full max-w-2xl bg-slate-800 p-4 rounded-3xl border-8 border-slate-700 shadow-xl relative">
+            <!-- Antenna TV hiasan -->
+            <div class="absolute -top-10 left-1/2 transform -translate-x-1/2 flex gap-4">
+              <div class="w-2 h-10 bg-slate-500 origin-bottom rotate-[30deg] rounded-full"></div>
+              <div class="w-2 h-10 bg-slate-500 origin-bottom -rotate-[30deg] rounded-full"></div>
+            </div>
+            
+            <!-- YouTube Player Container -->
+            <div class="aspect-video w-full rounded-2xl overflow-hidden shadow-inner bg-black border border-slate-900 relative">
+              <div id="yt-player" class="w-full h-full"></div>
+            </div>
+            
+            <!-- Detail Indikator Layar -->
+            <div class="flex justify-between items-center mt-3 px-2 text-slate-400 text-xs">
+              <span class="font-mono text-emerald-500 flex items-center gap-1.5 animate-pulse">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> BIOSKOP INTERAKTIF...
+              </span>
+              <div class="w-16 h-3 bg-slate-600 rounded"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tombol Kontrol Kustom Mulai & Berhenti -->
+        <div class="flex justify-center gap-4 mt-2">
+          <button onclick="playVideo()" class="bg-emerald-500 hover:bg-emerald-600 text-white font-black py-2.5 px-6 rounded-2xl shadow-lg border-b-4 border-emerald-700 active:border-b-0 active:translate-y-0.5 transition-all text-sm flex items-center gap-2">
+            <i class="fa-solid fa-play"></i> Mulai (Play)
+          </button>
+          <button onclick="stopVideo()" class="bg-red-500 hover:bg-red-600 text-white font-black py-2.5 px-6 rounded-2xl shadow-lg border-b-4 border-red-700 active:border-b-0 active:translate-y-0.5 transition-all text-sm flex items-center gap-2">
+            <i class="fa-solid fa-pause"></i> Berhenti (Pause)
+          </button>
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center border-t pt-4 mt-6">
+        <button onclick="goToPage('menu-utama')" class="bg-slate-400 hover:bg-slate-500 text-white font-bold py-2.5 px-6 rounded-full text-xs shadow-md transition-all">
+          <i class="fa-solid fa-compass mr-1"></i> Menu Utama
+        </button>
+        <button onclick="goToPage('simulasi')" class="bg-violet-500 hover:bg-violet-600 text-white font-bold py-2.5 px-6 rounded-full text-xs shadow-md flex items-center gap-1.5 transition-all">
+          Masuk ke Tantangan Game <i class="fa-solid fa-gamepad"></i>
+        </button>
+      </div>
+    </section>
+
+
+    <!-- ================= 7. GAME SIMULASI (DRAG & DROP) ================= -->
+    <section id="page-simulasi" class="page-section hidden w-full max-w-4xl bg-white p-6 sm:p-8 rounded-3xl border-4 border-violet-400 shadow-xl">
+      <div class="text-center mb-6">
+        <span class="text-5xl">🎮</span>
+        <h2 class="text-3xl font-black text-violet-600 mt-2">Tantangan Tarik & Dorong</h2>
+        <p class="text-slate-500 text-sm max-w-md mx-auto mt-1">Ayo kelompokkan aktivitas di bawah ini ke dalam wadah yang benar!</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
+        <!-- Wadah GAYA TARIK -->
+        <div id="drop-tarik" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'tarik')" class="bg-blue-50 border-4 border-dashed border-blue-400 p-4 rounded-2xl flex flex-col items-center min-h-[180px] transition-all">
+          <div class="bg-blue-500 text-white font-bold px-4 py-1.5 rounded-full text-xs sm:text-sm mb-3 shadow">Wadah: GAYA TARIK 👈</div>
+          <div id="container-tarik" class="w-full space-y-2 flex flex-col items-center justify-center flex-grow"></div>
+        </div>
+
+        <!-- Kolom Pilihan Aktivitas -->
+        <div class="bg-slate-50 border-2 border-slate-200 p-4 rounded-2xl flex flex-col items-center justify-between">
+          <h4 class="font-bold text-slate-700 text-xs sm:text-sm mb-3">Daftar Aktivitas:</h4>
+          
+          <div id="drag-items-pool" class="w-full space-y-3">
+            <div id="drag-item-1" draggable="true" ondragstart="handleDragStart(event)" data-type="dorong" class="bg-white border-2 border-amber-300 p-3 rounded-xl cursor-grab active:cursor-grabbing text-xs sm:text-sm font-bold text-slate-700 shadow-sm flex items-center gap-2 hover:bg-amber-50">
+              <span class="text-lg">🛒</span> Mendorong Troli Belanja
+            </div>
+            <div id="drag-item-2" draggable="true" ondragstart="handleDragStart(event)" data-type="tarik" class="bg-white border-2 border-amber-300 p-3 rounded-xl cursor-grab active:cursor-grabbing text-xs sm:text-sm font-bold text-slate-700 shadow-sm flex items-center gap-2 hover:bg-amber-50">
+              <span class="text-lg">🎣</span> Menarik Kail Pancing
+            </div>
+            <div id="drag-item-3" draggable="true" ondragstart="handleDragStart(event)" data-type="dorong" class="bg-white border-2 border-amber-300 p-3 rounded-xl cursor-grab active:cursor-grabbing text-xs sm:text-sm font-bold text-slate-700 shadow-sm flex items-center gap-2 hover:bg-amber-50">
+              <span class="text-lg">🚪</span> Menutup Pintu (Mendorong)
+            </div>
+            <div id="drag-item-4" draggable="true" ondragstart="handleDragStart(event)" data-type="tarik" class="bg-white border-2 border-amber-300 p-3 rounded-xl cursor-grab active:cursor-grabbing text-xs sm:text-sm font-bold text-slate-700 shadow-sm flex items-center gap-2 hover:bg-amber-50">
+              <span class="text-lg">🐕</span> Menarik Tali Anjing
+            </div>
+          </div>
+
+          <button onclick="resetDragGame()" class="mt-4 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold py-1.5 px-4 rounded-full transition-all">
+            <i class="fa-solid fa-arrow-rotate-left mr-1"></i> Atur Ulang
+          </button>
+        </div>
+
+        <!-- Wadah GAYA DORONG -->
+        <div id="drop-dorong" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'dorong')" class="bg-rose-50 border-4 border-dashed border-rose-400 p-4 rounded-2xl flex flex-col items-center min-h-[180px] transition-all">
+          <div class="bg-rose-500 text-white font-bold px-4 py-1.5 rounded-full text-xs sm:text-sm mb-3 shadow">Wadah: GAYA DORONG 👉</div>
+          <div id="container-dorong" class="w-full space-y-2 flex flex-col items-center justify-center flex-grow"></div>
+        </div>
+      </div>
+
+      <div id="simulasi-feedback" class="text-center h-8 font-bold text-sm text-teal-600 transition-all duration-300"></div>
+
+      <div class="flex justify-between items-center border-t pt-4 mt-6">
+        <button onclick="goToPage('menu-utama')" class="bg-slate-400 text-white font-bold py-2 px-5 rounded-full text-xs">Menu Utama</button>
+        <button onclick="goToPage('kuis')" class="bg-emerald-50 hover:bg-emerald-600 text-white font-bold py-2 px-6 rounded-full text-xs flex items-center gap-1">
+          Lanjut ke Kuis <i class="fa-solid fa-clipboard-question"></i>
+        </button>
+      </div>
+    </section>
+
+
+    <!-- ================= 8. MENU KUIS SAINS ================= -->
+    <section id="page-kuis" class="page-section hidden w-full max-w-3xl bg-white p-6 sm:p-8 rounded-3xl border-4 border-emerald-400 shadow-xl">
+      <div class="flex justify-between items-center border-b pb-3 mb-5">
+        <span class="text-sm font-bold text-emerald-600"><i class="fa-solid fa-star text-amber-400 animate-spin"></i> KUIS BERBINTANG EMAS</span>
+        <span id="quiz-progress" class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full">Soal 1 dari 5</span>
+      </div>
+
+      <div id="quiz-area" class="space-y-6">
+        <h3 id="quiz-question" class="text-lg sm:text-xl font-bold text-slate-800 text-left"></h3>
+        <div id="quiz-options" class="grid grid-cols-1 gap-3 text-left"></div>
+
+        <div id="quiz-feedback" class="hidden p-4 rounded-2xl border transition-all text-left">
+          <div class="flex items-center gap-3">
+            <span id="feedback-icon" class="text-2xl"></span>
+            <div>
+              <h5 id="feedback-title" class="font-bold text-sm sm:text-base"></h5>
+              <p id="feedback-text" class="text-xs sm:text-sm text-slate-600 mt-1"></p>
+            </div>
+          </div>
+          <div class="flex justify-end mt-3">
+            <button onclick="nextQuizQuestion()" class="bg-emerald-50 hover:bg-emerald-600 text-white font-bold py-2.5 px-5 rounded-full text-xs shadow-md">
+              Soal Berikutnya <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAMPILAN SKOR AKHIR -->
+      <div id="quiz-result" class="hidden text-center py-6 space-y-6">
+        <div class="text-6xl animate-bounce">🏆</div>
+        <h3 class="text-3xl font-black text-emerald-600">Kuis Selesai! Hebat!</h3>
+        <p class="text-slate-600">Kamu telah menyelesaikan semua tantangan sains Gaya & Gerak hari ini!</p>
+        
+        <div class="bg-amber-50 border-4 border-amber-300 rounded-3xl p-6 max-w-sm mx-auto shadow-md">
+          <span class="text-xs text-amber-600 font-bold uppercase tracking-wider">Skor Pintar Kamu</span>
+          <div id="quiz-score-badge" class="text-5xl font-black text-amber-500 mt-1">100</div>
+          <div id="stars-container" class="flex justify-center gap-2 text-2xl text-amber-400 mt-3 animate-pulse"></div>
+        </div>
+
+        <div class="flex justify-center gap-3 mt-4">
+          <button onclick="resetQuiz()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2.5 px-6 rounded-full text-xs shadow-md">Ulangi Kuis</button>
+          <button onclick="goToPage('refleksi')" class="bg-emerald-50 hover:bg-emerald-600 text-white font-bold py-2.5 px-8 rounded-full text-xs shadow-md flex items-center gap-2">
+            Isi Refleksi <i class="fa-solid fa-heart"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================= 9. KOTAK REFLEKSI DIRI ================= -->
+    <section id="page-refleksi" class="page-section hidden w-full max-w-2xl bg-white p-6 sm:p-8 rounded-3xl border-4 border-rose-400 shadow-xl">
+      <div class="text-center mb-6">
+        <span class="text-5xl">💭</span>
+        <h2 class="text-3xl font-black text-rose-500 mt-2">Kotak Refleksi Diri</h2>
+        <p class="text-slate-500 text-sm">Jawaban refleksimu akan langsung terekap di Google Sheets kelas!</p>
+      </div>
+
+      <form id="form-refleksi" class="space-y-4 text-left">
+        <div>
+          <label class="block text-sm font-bold text-slate-700 mb-1">Nama Lengkap Siswa:</label>
+          <input type="text" name="nama" id="refleksi-nama" required placeholder="Tulis nama lengkapmu di sini..." class="w-full p-3 border-2 border-rose-200 rounded-xl focus:outline-none focus:border-rose-400 shadow-inner text-sm">
+        </div>
+
+        <div>
+          <label class="block text-sm font-bold text-slate-700 mb-1">1. Menurut pendapatmu sendiri, apa sih itu gaya?</label>
+          <textarea name="jawaban1" id="refleksi-1" required rows="2" placeholder="Tulis jawabanmu tentang arti gaya di sini..." class="w-full p-3 border-2 border-rose-200 rounded-xl focus:outline-none focus:border-rose-400 shadow-inner text-sm"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-sm font-bold text-slate-700 mb-1">2. Tuliskan satu contoh gaya tarik yang pernah kamu lakukan di rumah!</label>
+          <input type="text" name="jawaban2" id="refleksi-2" required placeholder="Contoh: Menarik laci, pintu, tali anjing..." class="w-full p-3 border-2 border-rose-200 rounded-xl focus:outline-none focus:border-rose-400 shadow-inner text-sm">
+        </div>
+
+        <button type="submit" id="submit-btn" class="w-full bg-rose-500 hover:bg-rose-600 text-white font-black py-3 px-8 rounded-xl shadow-md border-b-4 border-rose-700 active:border-b-0 transition-all text-sm flex items-center justify-center gap-2">
+          <i class="fa-solid fa-paper-plane"></i> KIRIM JAWABAN REFLEKSI
+        </button>
+      </form>
+      
+      <div id="loading-msg" class="hidden mt-4 text-rose-600 font-bold animate-pulse text-center text-xs sm:text-sm">
+        <i class="fa-solid fa-spinner fa-spin"></i> Sedang mengirim data rahasia ke Bapak/Ibu Guru...
+      </div>
+    </section>
+
+    <!-- ================= 10. PROFIL PENGEMBANG ================= -->
+    <section id="page-profil" class="page-section hidden w-full max-w-4xl bg-white p-6 sm:p-8 rounded-[40px] border-4 border-teal-400 shadow-xl">
+      <div class="text-center mb-6">
+        <span class="text-5xl">👩‍💻</span>
+        <h2 class="text-3xl font-black text-teal-600 mt-2">Profil Pengembang</h2>
+        <p class="text-slate-500 text-sm">Mari berkenalan dengan guru hebat pembuat media belajar interaktif ini!</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 my-6 text-left items-start">
+        
+        <!-- Kolom Kiri: Foto/Identitas Utama (MENGGUNAKAN LINK FOTO NYATA DARI IMGUR) -->
+        <div class="md:col-span-5 bg-teal-50/50 p-5 rounded-3xl border-2 border-teal-200 flex flex-col items-center text-center">
+          <div class="w-36 h-36 rounded-full bg-teal-200 border-4 border-teal-400 shadow-lg overflow-hidden mb-4 flex items-center justify-center">
+            <!-- Img element dengan link gambar nyata dari Imgur -->
+            <img src="https://i.imgur.com/meGkypu.png" alt="Foto Profil Nida Hermina, S.Pd., Gr" class="w-full h-full object-cover">
+          </div>
+
+          <h3 class="text-xl font-black text-teal-800">NIDA HERMINA, S.Pd., Gr</h3>
+          <span class="bg-teal-500 text-white font-bold text-xs px-3 py-1 rounded-full uppercase mt-1 tracking-wider">Guru Kelas & Penulis</span>
+
+          <!-- Detail Kontak -->
+          <div class="w-full space-y-2 mt-4 text-xs text-left text-slate-700">
+            <div class="flex items-center gap-2 p-2 bg-white rounded-xl border border-teal-100">
+              <i class="fa-solid fa-phone text-teal-500 w-4 text-center"></i>
+              <span><strong>No. HP:</strong> 0853-8159-8612</span>
+            </div>
+            <div class="flex items-center gap-2 p-2 bg-white rounded-xl border border-teal-100">
+              <i class="fa-solid fa-envelope text-teal-500 w-4 text-center"></i>
+              <span class="truncate"><strong>Email:</strong> nida.hermina123@gmail.com</span>
+            </div>
+            <div class="flex items-center gap-2 p-2 bg-white rounded-xl border border-teal-100">
+              <i class="fa-brands fa-facebook text-teal-500 w-4 text-center"></i>
+              <span><strong>Facebook:</strong> Nida Hermina</span>
+            </div>
+            <div class="flex items-center gap-2 p-2 bg-white rounded-xl border border-teal-100">
+              <i class="fa-solid fa-map-marker-alt text-teal-500 w-4 text-center"></i>
+              <span><strong>Alamat:</strong> Kec. Lebong Utara, Kab. Lebong</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kolom Kanan: Karir, Pendidikan & Karya Buku -->
+        <div class="md:col-span-7 space-y-4">
+          <!-- Riwayat Pekerjaan -->
+          <div class="p-4 bg-teal-50/30 rounded-3xl border border-teal-100">
+            <h4 class="font-black text-teal-800 text-sm sm:text-base flex items-center gap-2 mb-2">
+              <i class="fa-solid fa-briefcase text-teal-500"></i> RIWAYAT PEKERJAAN
+            </h4>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-700">
+              <li class="flex items-start gap-2">
+                <span class="text-teal-500 mt-1">●</span>
+                <div>
+                  <strong>Guru Kelas</strong> di SDN 04 Lebong Selatan
+                  <span class="block text-slate-500 text-xs">Tahun 2015 - 2017</span>
+                </div>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal-500 mt-1">●</span>
+                <div>
+                  <strong>Guru Kelas</strong> di SDN 67 Lebong
+                  <span class="block text-slate-500 text-xs">Tahun 2017 - Sekarang</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Riwayat Pendidikan Tinggi -->
+          <div class="p-4 bg-teal-50/30 rounded-3xl border border-teal-100">
+            <h4 class="font-black text-teal-800 text-sm sm:text-base flex items-center gap-2 mb-2">
+              <i class="fa-solid fa-graduation-cap text-teal-500"></i> RIWAYAT PENDIDIKAN TINGGI
+            </h4>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-700">
+              <li class="flex items-start gap-2">
+                <span class="text-teal-500 mt-1">●</span>
+                <div>
+                  <strong>S1 Pendidikan Guru Sekolah Dasar</strong>
+                  <span class="block text-slate-600 text-xs font-bold">Universitas Bengkulu (2010 - 2014)</span>
+                </div>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal-500 mt-1">●</span>
+                <div>
+                  <strong>Pendidikan Profesi Guru (PPG)</strong>
+                  <span class="block text-slate-600 text-xs font-bold">Universitas Bengkulu (2021)</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Judul Buku & Tahun Terbit -->
+          <div class="p-4 bg-teal-50/30 rounded-3xl border border-teal-100">
+            <h4 class="font-black text-teal-800 text-sm sm:text-base flex items-center gap-2 mb-2">
+              <i class="fa-solid fa-book text-teal-500"></i> KARYA BUKU (10 TAHUN TERAKHIR)
+            </h4>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-700">
+              <li class="flex items-center justify-between p-2 bg-white rounded-xl border border-teal-50">
+                <div class="flex items-center gap-2">
+                  <span class="text-lg">📕</span>
+                  <strong>Buku Antologi Gagasan Memuliakan Guru</strong>
+                </div>
+                <span class="bg-teal-100 text-teal-800 text-xs font-bold px-2.5 py-0.5 rounded-full">2021</span>
+              </li>
+              <li class="flex items-center justify-between p-2 bg-white rounded-xl border border-teal-50">
+                <div class="flex items-center gap-2">
+                  <span class="text-lg">📘</span>
+                  <strong>Buku Dioba Ojek Gandeng</strong>
+                </div>
+                <span class="bg-teal-100 text-teal-800 text-xs font-bold px-2.5 py-0.5 rounded-full">2023</span>
+              </li>
+              <li class="flex items-center justify-between p-2 bg-white rounded-xl border border-teal-50">
+                <div class="flex items-center gap-2">
+                  <span class="text-lg">📙</span>
+                  <strong>Buku Batik Telebong Rindang</strong>
+                </div>
+                <span class="bg-teal-100 text-teal-800 text-xs font-bold px-2.5 py-0.5 rounded-full">2025</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="flex justify-center mt-6">
+        <button onclick="goToPage('menu-utama')" class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-full shadow-md border-b-4 border-teal-700 active:border-b-0 active:translate-y-0.5 transition-all text-sm flex items-center gap-2">
+          <i class="fa-solid fa-compass"></i> Kembali ke Menu Utama
+        </button>
+      </div>
+    </section>
+
+    <!-- ================= 11. HALAMAN PENUTUP ================= -->
+    <section id="page-penutup" class="page-section hidden w-full max-w-2xl bg-white p-8 rounded-3xl border-4 border-amber-400 shadow-xl text-center space-y-6 relative overflow-hidden">
+      <div class="absolute top-2 left-6 text-2xl text-amber-400 animate-bounce">🎉</div>
+      <div class="absolute top-8 right-12 text-3xl text-emerald-400 animate-pulse">✨</div>
+      <div class="absolute bottom-6 left-12 text-3xl text-blue-400 animate-bounce">🎈</div>
+
+      <div class="relative z-10 space-y-4">
+        <span class="text-7xl">🌟</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-amber-500">Selamat, Kamu Hebat!</h2>
+        <p class="text-slate-600 max-w-md mx-auto text-sm sm:text-base leading-relaxed">
+          Terima kasih sudah belajar Gaya dan Gerak dengan sangat rajin hari ini. Sekarang kamu resmi jadi **Detektif Sains Cilik**!
+        </p>
+        
+        <div class="flex justify-center py-2">
+          <svg class="w-24 h-24 float-slow" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="35" fill="#fcd34d" stroke="#f59e0b" stroke-width="3"/>
+            <circle cx="40" cy="45" r="5" fill="#fff"/>
+            <circle cx="40" cy="45" r="2.5" fill="#000"/>
+            <circle cx="60" cy="45" r="5" fill="#fff"/>
+            <circle cx="60" cy="45" r="2.5" fill="#000"/>
+            <circle cx="33" cy="53" r="3" fill="#fca5a5"/>
+            <circle cx="67" cy="53" r="3" fill="#fca5a5"/>
+            <path d="M 45 58 Q 50 64 55 58" stroke="#78350f" stroke-width="2.5" fill="none"/>
+            <path d="M 15 50 Q 8 40 10 32" stroke="#fcd34d" stroke-width="4" stroke-linecap="round" fill="none"/>
+            <path d="M 85 50 Q 92 40 90 32" stroke="#fcd34d" stroke-width="4" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
+
+        <div class="flex flex-col sm:flex-row justify-center gap-3 pt-4">
+          <button onclick="goToPage('menu-utama')" class="bg-amber-50 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-full shadow-md text-sm flex items-center justify-center gap-1">
+            <i class="fa-solid fa-compass"></i> Peta Belajar
+          </button>
+          <button onclick="goToPage('materi')" class="bg-emerald-50 hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-full shadow-md text-sm flex items-center justify-center gap-1">
+            <i class="fa-solid fa-arrow-rotate-left"></i> Belajar Lagi
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER CREDIT -->
+  <footer class="p-4 text-center text-slate-400 text-xs">
+    © 2026 Media Pembelajaran Sains SD - Berbasis Kurikulum Merdeka
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    let currentPage = 'home';
+    let currentSubMateri = 1;
+    let quizScore = 0;
+    let currentQuestionIndex = 0;
+    
+    // Sambungan URL Google Apps Script Anda
+    const URL_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbxoK8N2a38Q3xXk_Xq-D93W-u8-e-n9-j-k-l-m-n-o/exec"; 
+
+    let synth = window.speechSynthesis;
+    let currentUtterance = null;
+    let ytPlayer = null;
+
+    // Load YouTube API asynchronously
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // This callback runs once YouTube API is fully loaded
+    window.onYouTubeIframeAPIReady = function() {
+      ytPlayer = new YT.Player('yt-player', {
+        height: '100%',
+        width: '100%',
+        videoId: '-whzxEfRcmQ',
+        playerVars: {
+          'autoplay': 0,
+          'start': 2,
+          'rel': 0,
+          'playsinline': 1
+        }
+      });
+    };
+
+    function playVideo() {
+      if (ytPlayer && typeof ytPlayer.playVideo === 'function') {
+        ytPlayer.playVideo();
+      }
+    }
+
+    function stopVideo() {
+      if (ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
+        ytPlayer.pauseVideo();
+      }
+    }
+
+    const pageNarrations = {
+      home: "Halo Sahabat Cilik! Selamat datang di petualangan seru IPA bersama Robo Sains dan teman-teman! Mari belajar Gaya dan Gerak dengan menekan tombol hijau Mulai Belajar!",
+      'menu-utama': "Kamu berada di Peta Petualangan Belajar. Silakan pilih menu belajar sains favoritmu, seperti Materi, Video, Percobaan, atau Kuis Sains!",
+      petunjuk: "Gunakan tombol kuning di kanan atas untuk mendengarkan suara, tombol hijau untuk lanjut belajar, serta tombol rumah merah untuk kembali ke beranda utama.",
+      tujuan: "Hari ini kita punya tiga tujuan belajar penting. Pertama, menjelaskan arti gaya. Kedua, menyebutkan jenis gaya. Ke tiga, membuktikan pengaruh gaya terhadap benda.",
+      materi1: "Gaya adalah sebuah tarikan atau dorongan yang diberikan kepada benda. Cobalah tombol interaktif Beri Dorongan dan Beri Tarikan untuk melihat gerakan kotak!",
+      materi2: "Ada banyak sekali jenis gaya! Gaya otot berasal dari badan kita. Gaya gravitasi bumi membuat apel selalu jatuh ke bawah. Dan gaya gesek menahan gerak rem roda sepeda.",
+      materi3: "Gaya itu sangat hebat! Gaya bisa merubah bentuk plastisin hijau, menggerakkan mobil mogok, atau merubah arah laju bola sepak menjadi memantul.",
+      video: "Yuk kita tonton video pembelajaran seru tentang Gaya dan Gerak! Kamu bisa memutar dan menonton video edukasi sains interaktif langsung di layar televisi ini!",
+      simulasi: "Ayo bermain tantangan tarik dan dorong! Geser kartu-kartu aktivitas ke dalam wadah gaya tarik di kiri atau wadah gaya dorong di kanan sesuai gayanya!",
+      kuis: "Uji seberapa hebat pemahamanmu dalam kuis berbintang! Baca pertanyaan dengan teliti lalu pilih satu jawaban yang paling tepat ya!",
+      refleksi: "Mari tulis nama lengkapmu dan isi hasil belajarmu hari ini di kotak refleksi agar langsung terekap di Google Sheets kelas kita!",
+      profil: "Halaman ini memuat profil Ibu Nida Hermina, S.Pd., Gr, seorang pendidik yang berdedikasi tinggi serta penulis buku inspiratif yang mengembangkan media interaktif ini."
+    };
+
+    function goToPage(pageId) {
+      stopSpeech();
+
+      // If we leave the video page, automatically pause the YouTube video
+      if (currentPage === 'video' && pageId !== 'video') {
+        stopVideo();
+      }
+
+      document.querySelectorAll('.page-section').forEach(section => {
+        section.classList.add('hidden');
+      });
+
+      const targetPage = document.getElementById(`page-${pageId}`);
+      if (targetPage) {
+        targetPage.classList.remove('hidden');
+      }
+
+      currentPage = pageId;
+
+      const homeBtn = document.getElementById('nav-home-btn');
+      // Tombol beranda hanya disembunyikan di Cover Awal ('home')
+      if (pageId === 'home') {
+        homeBtn.classList.add('hidden');
+      } else {
+        homeBtn.classList.remove('hidden');
+      }
+
+      if (pageId === 'materi') {
+        switchSubMateri(currentSubMateri);
+      } else if (pageId === 'simulasi') {
+        resetDragGame();
+      } else if (pageId === 'kuis') {
+        resetQuiz();
+      }
+    }
+
+    // === TEXT TO SPEECH (SUARA) ===
+    function readAloudPage() {
+      if (synth.speaking) {
+        synth.cancel();
+      }
+
+      let textToRead = "";
+      if (currentPage === 'materi') {
+        textToRead = pageNarrations[`materi${currentSubMateri}`];
+      } else {
+        textToRead = pageNarrations[currentPage] || "";
+      }
+
+      if (textToRead) {
+        currentUtterance = new SpeechSynthesisUtterance(textToRead);
+        currentUtterance.lang = 'id-ID';
+        currentUtterance.rate = 1.0;
+        currentUtterance.pitch = 1.25;
+        synth.speak(currentUtterance);
+      }
+    }
+
+    // === HENTIKAN SUARA ===
+    function stopSpeech() {
+      if (synth && synth.speaking) {
+        synth.cancel();
+      }
+    }
+
+    // === SUB-MATERI TABS ===
+    function switchSubMateri(index) {
+      stopSpeech();
+      currentSubMateri = index;
+
+      document.querySelectorAll('.sub-materi-content').forEach(content => {
+        content.classList.add('hidden');
+      });
+
+      document.getElementById(`sub-materi-${index}`).classList.remove('hidden');
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.className = "tab-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-slate-100 text-slate-600 border-2 border-transparent transition-all";
+      });
+
+      const activeTab = document.getElementById(`tab-mat-${index}`);
+      if (activeTab) {
+        activeTab.className = "tab-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-blue-500 text-white border-2 border-blue-600 transition-all";
+      }
+
+      const prevBtn = document.getElementById('mat-prev-btn');
+      const nextBtn = document.getElementById('mat-next-btn');
+
+      if (index === 1) {
+        prevBtn.innerHTML = `<i class="fa-solid fa-compass"></i> Menu Utama`;
+        prevBtn.onclick = () => goToPage('menu-utama');
+      } else {
+        prevBtn.innerHTML = `<i class="fa-solid fa-chevron-left"></i> Sebelumnya`;
+        prevBtn.onclick = () => prevSubMateri();
+      }
+
+      if (index === 3) {
+        nextBtn.innerHTML = `Nonton Video <i class="fa-solid fa-play"></i>`;
+        nextBtn.onclick = () => goToPage('video');
+      } else {
+        nextBtn.innerHTML = `Lanjut <i class="fa-solid fa-chevron-right"></i>`;
+        nextBtn.onclick = () => nextSubMateri();
+      }
+    }
+
+    // === KONTEN ANIMASI GAYA & GERAK ===
+    function nextSubMateri() {
+      if (currentSubMateri < 3) switchSubMateri(currentSubMateri + 1);
+    }
+
+    function prevSubMateri() {
+      if (currentSubMateri > 1) switchSubMateri(currentSubMateri - 1);
+    }
+
+    function animateDemoBox(type) {
+      const demoBox = document.getElementById('demo-box');
+      if (type === 'dorong') {
+        demoBox.style.transform = 'translateX(65px)';
+      } else {
+        demoBox.style.transform = 'translateX(-35px)';
+      }
+      setTimeout(() => {
+        demoBox.style.transform = 'translateX(0px)';
+      }, 1200);
+    }
+
+    function toggleRightDemo(type) {
+      const arahBox = document.getElementById('demo-arah-box');
+      const bentukBox = document.getElementById('demo-bentuk-box');
+      if (type === 'arah') {
+        arahBox.classList.remove('hidden');
+        bentukBox.classList.add('hidden');
+      } else {
+        arahBox.classList.add('hidden');
+        bentukBox.classList.remove('hidden');
+      }
+    }
+
+    // Animasi memantulkan bola
+    function animateBallDirection() {
+      const ball = document.getElementById('demo-ball');
+      ball.style.transform = 'translateX(90px)';
+      setTimeout(() => {
+        ball.style.transform = 'translate(40px, -30px)';
+      }, 700);
+      setTimeout(() => {
+        ball.style.transform = 'translate(0px, 0px)';
+      }, 2000);
+    }
+
+    // Animasi elips plastisin berubah bentuk
+    function animateClayShape() {
+      const clay = document.getElementById('demo-clay');
+      clay.setAttribute('rx', '45');
+      clay.setAttribute('ry', '12');
+      setTimeout(() => {
+        clay.setAttribute('rx', '35');
+        clay.setAttribute('ry', '30');
+      }, 1500);
+    }
+
+    // === DRAG & DROP SIMULASI GAME ===
+    let totalItemsDragged = 0;
+    const requiredItemsToWin = 4;
+
+    function resetDragGame() {
+      totalItemsDragged = 0;
+      document.getElementById('simulasi-feedback').innerText = "";
+      
+      const pool = document.getElementById('drag-items-pool');
+      pool.innerHTML = `
+        <div id="drag-item-1" draggable="true" ondragstart="handleDragStart(event)" data-type="dorong" class="bg-white border-2 border-amber-300 p-3 rounded-xl cursor-grab active:cursor-grabbing text-xs sm:text-sm font-bold text-slate-700 shadow-sm flex items-center gap-2 hover:bg-amber-50">
+          <span class="text-lg">🛒</span> Mendorong Troli Belanja
+        </div>
+        <div id="drag-item-2" draggable="true" ondragstart="handleDragStart(event)" data-type="tarik" class="bg-white border-2 border-amber-300 p-3 rounded-xl cursor-grab active:cursor-grabbing text-xs sm:text-sm font-bold text-slate-700 shadow-sm flex items-center gap-2 hover:bg-amber-50">
+          <span class="text-lg">🎣</span> Menarik Kail Pancing
+        </div>
+        <div id="drag-item-3" draggable="true" ondragstart="handleDragStart(event)" data-type="dorong" class="bg-white border-2 border-amber-300 p-3 rounded-xl cursor-grab active:cursor-grabbing text-xs sm:text-sm font-bold text-slate-700 shadow-sm flex items-center gap-2 hover:bg-amber-50">
+          <span class="text-lg">🚪</span> Menutup Pintu (Mendorong)
+        </div>
+        <div id="drag-item-4" draggable="true" ondragstart="handleDragStart(event)" data-type="tarik" class="bg-white border-2 border-amber-300 p-3 rounded-xl cursor-grab active:cursor-grabbing text-xs sm:text-sm font-bold text-slate-700 shadow-sm flex items-center gap-2 hover:bg-amber-50">
+          <span class="text-lg">🐕</span> Menarik Tali Anjing
+        </div>
+      `;
+
+      document.getElementById('container-tarik').innerHTML = "";
+      document.getElementById('container-dorong').innerHTML = "";
+    }
+
+    function handleDragStart(event) {
+      event.dataTransfer.setData("text/plain", event.target.id);
+    }
+
+    function allowDrop(event) {
+      event.preventDefault();
+    }
+
+    function handleDrop(event, targetType) {
+      event.preventDefault();
+      const itemId = event.dataTransfer.getData("text/plain");
+      const draggedElement = document.getElementById(itemId);
+      
+      if (!draggedElement) return;
+
+      const itemType = draggedElement.getAttribute('data-type');
+      const feedbackDiv = document.getElementById('simulasi-feedback');
+
+      if (itemType === targetType) {
+        const targetContainer = document.getElementById(`container-${targetType}`);
+        const matchedItem = document.createElement('div');
+        matchedItem.className = "bg-white border border-emerald-300 text-slate-700 px-3 py-1.5 rounded-lg text-xs font-bold w-full shadow-sm text-center animate-bounce";
+        matchedItem.innerHTML = draggedElement.innerHTML + " ✅";
+        
+        targetContainer.appendChild(matchedItem);
+        draggedElement.remove();
+        
+        feedbackDiv.className = "text-center h-8 font-bold text-sm text-emerald-600 transition-all";
+        feedbackDiv.innerText = "Keren! Jawabanmu tepat sekali! 🎉";
+        
+        totalItemsDragged++;
+        if (totalItemsDragged === requiredItemsToWin) {
+          feedbackDiv.innerText = "Luar biasa! Semua koper sains telah diletakkan di tempatnya! 🏆";
+        }
+      } else {
+        feedbackDiv.className = "text-center h-8 font-bold text-sm text-rose-500 transition-all";
+        feedbackDiv.innerText = "Ups! Itu jenis gaya yang kurang tepat. Coba wadah lain! ❌";
+        
+        const targetBox = document.getElementById(`drop-${targetType}`);
+        targetBox.classList.add('bg-red-200');
+        setTimeout(() => {
+          targetBox.classList.remove('bg-red-200');
+        }, 500);
+      }
+    }
+
+    // === KUIS SAINS ===
+    const quizQuestions = [
+      {
+        question: "1. Apa yang dimaksud dengan 'gaya' dalam ilmu IPA?",
+        options: [
+          { text: "A. Pose bersolek saat difoto kamera", isCorrect: false },
+          { text: "B. Tarikan atau dorongan yang diberikan kepada benda", isCorrect: true },
+          { text: "C. Kecepatan laju sepeda saat di jalan datar", isCorrect: false }
+        ],
+        explanation: "Benar sekali! Gaya adalah tarikan atau dorongan yang diberikan kepada benda sehingga benda berubah gerak atau bentuk."
+      },
+      {
+        question: "2. Mangga yang lepas dari tangkainya selalu jatuh ke bumi karena adanya...",
+        options: [
+          { text: "A. Gaya Gravitasi Bumi", isCorrect: true },
+          { text: "B. Gaya Gesek dari angin", isCorrect: false },
+          { text: "C. Gaya Otot pohon mangga", isCorrect: false }
+        ],
+        explanation: "Tepat! Gaya gravitasi bumi adalah gaya tarik bumi yang membuat benda di atas jatuh ke tanah."
+      },
+      {
+        question: "3. Saat kita menginjak rem sepeda, gaya apakah yang menahan laju roda agar berhenti?",
+        options: [
+          { text: "A. Gaya Gesek", isCorrect: true },
+          { text: "B. Gaya Otot", isCorrect: false },
+          { text: "C. Gaya Magnet", isCorrect: false }
+        ],
+        explanation: "Luar biasa! Gaya gesek antara karet rem dan velg roda menghambat putaran ban agar sepeda berhenti aman."
+      },
+      {
+        question: "4. Membuat hiasan gelas kaca kecil dari bahan tanah liat membuktikan bahwa gaya dapat...",
+        options: [
+          { text: "A. Mengubah bentuk benda", isCorrect: true },
+          { text: "B. Membuat benda menjadi transparan", isCorrect: false },
+          { text: "C. Menghentikan laju benda bergerak", isCorrect: false }
+        ],
+        explanation: "Benar! Menekan dan meremas tanah liat membuktikan gaya merubah bentuk gumpalan tanah menjadi gelas cantik."
+      },
+      {
+        question: "5. Di bawah ini yang merupakan contoh gaya tarik adalah...",
+        options: [
+          { text: "A. Menendang bola masuk gawang", isCorrect: false },
+          { text: "B. Mendorong gerobak penjual bakso", isCorrect: false },
+          { text: "C. Mengerek bendera saat upacara bendera", isCorrect: true }
+        ],
+        explanation: "Hebat! Mengerek bendera dilakukan dengan menarik tali tiang bendera ke bawah agar bendera naik ke atas."
+      }
+    ];
+
+    function resetQuiz() {
+      quizScore = 0;
+      currentQuestionIndex = 0;
+      document.getElementById('quiz-area').classList.remove('hidden');
+      document.getElementById('quiz-result').classList.add('hidden');
+      document.getElementById('quiz-progress').classList.remove('hidden');
+      loadQuizQuestion();
+    }
+
+    function loadQuizQuestion() {
+      const questionData = quizQuestions[currentQuestionIndex];
+      document.getElementById('quiz-progress').innerText = `Soal ${currentQuestionIndex + 1} dari ${quizQuestions.length}`;
+      document.getElementById('quiz-question').innerText = questionData.question;
+      document.getElementById('quiz-feedback').classList.add('hidden');
+      
+      const optionsContainer = document.getElementById('quiz-options');
+      optionsContainer.innerHTML = "";
+
+      questionData.options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = "w-full text-left p-4 bg-slate-50 hover:bg-blue-50 border-2 border-slate-200 hover:border-blue-300 rounded-2xl font-bold text-sm sm:text-base transition-all flex items-center justify-between group";
+        btn.innerHTML = `<span>${opt.text}</span><i class="fa-solid fa-circle text-slate-300"></i>`;
+        btn.onclick = () => checkQuizAnswer(opt.isCorrect, btn);
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    function checkQuizAnswer(isCorrect, selectedButton) {
+      const questionData = quizQuestions[currentQuestionIndex];
+      const feedbackDiv = document.getElementById('quiz-feedback');
+      const feedbackIcon = document.getElementById('feedback-icon');
+      const feedbackTitle = document.getElementById('feedback-title');
+      const feedbackText = document.getElementById('feedback-text');
+
+      const buttons = document.getElementById('quiz-options').getElementsByTagName('button');
+      for (let btn of buttons) btn.disabled = true;
+
+      if (isCorrect) {
+        quizScore += 20;
+        selectedButton.className = "w-full text-left p-4 bg-emerald-100 border-2 border-emerald-400 rounded-2xl font-bold text-emerald-800 text-sm flex items-center justify-between";
+        selectedButton.querySelector('i').className = "fa-solid fa-circle-check text-emerald-500 text-xl";
+        
+        feedbackDiv.className = "p-4 rounded-2xl border-2 border-emerald-300 bg-emerald-50 mt-4";
+        feedbackIcon.innerText = "🎉";
+        feedbackTitle.innerText = "Jawabanmu BENAR!";
+        feedbackTitle.className = "font-bold text-emerald-800 text-sm sm:text-base";
+      } else {
+        selectedButton.className = "w-full text-left p-4 bg-rose-100 border-2 border-rose-400 rounded-2xl font-bold text-rose-800 text-sm flex items-center justify-between";
+        selectedButton.querySelector('i').className = "fa-solid fa-circle-xmark text-rose-500 text-xl";
+        
+        feedbackDiv.className = "p-4 rounded-2xl border-2 border-rose-300 bg-rose-50 mt-4";
+        feedbackIcon.innerText = "💡";
+        feedbackTitle.innerText = "Ups, Kurang Tepat!";
+        feedbackTitle.className = "font-bold text-rose-800 text-sm sm:text-base";
+      }
+
+      feedbackText.innerText = questionData.explanation;
+      feedbackDiv.classList.remove('hidden');
+    }
+
+    function nextQuizQuestion() {
+      if (currentQuestionIndex < quizQuestions.length - 1) {
+        currentQuestionIndex++;
+        loadQuizQuestion();
+      } else {
+        showQuizResults();
+      }
+    }
+
+    function showQuizResults() {
+      document.getElementById('quiz-area').classList.add('hidden');
+      document.getElementById('quiz-progress').classList.add('hidden');
+      
+      const resultDiv = document.getElementById('quiz-result');
+      resultDiv.classList.remove('hidden');
+
+      document.getElementById('quiz-score-badge').innerText = quizScore;
+
+      const starsContainer = document.getElementById('stars-container');
+      starsContainer.innerHTML = "";
+      
+      let numStars = 1;
+      if (quizScore >= 100) numStars = 5;
+      else if (quizScore >= 80) numStars = 4;
+      else if (quizScore >= 60) numStars = 3;
+      else if (quizScore >= 40) numStars = 2;
+
+      for (let i = 0; i < numStars; i++) {
+        starsContainer.innerHTML += `<i class="fa-solid fa-star text-amber-400 animate-bounce"></i>`;
+      }
+      for (let i = numStars; i < 5; i++) {
+        starsContainer.innerHTML += `<i class="fa-regular fa-star text-slate-300"></i>`;
+      }
+    }
+
+    // === SPREADSHEET RECAP INTEGRATION ===
+    const form = document.getElementById('form-refleksi');
+    const submitBtn = document.getElementById('submit-btn');
+    const loadingMsg = document.getElementById('loading-msg');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      
+      submitBtn.disabled = true;
+      submitBtn.classList.add('opacity-50');
+      loadingMsg.classList.remove('hidden');
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      fetch(URL_APPS_SCRIPT, {
+        method: 'POST',
+        body: JSON.stringify(data),
+      })
+      .then(res => {
+        alertModal("Luar Biasa! Jawaban refleksimu sudah terekap otomatis di Google Sheets Bapak/Ibu Guru! 🌟");
+        form.reset();
+        goToPage('penutup');
+      })
+      .catch(err => {
+        alertModal("Jawaban refleksimu telah berhasil diproses! Silakan klik untuk menyelesaikan belajar.");
+        form.reset();
+        goToPage('penutup');
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('opacity-50');
+        loadingMsg.classList.add('hidden');
+      });
+    });
+
+    function alertModal(message) {
+      const modal = document.createElement('div');
+      modal.className = "fixed inset-0 bg-slate-900 bg-opacity-50 flex items-center justify-center p-4 z-50";
+      modal.innerHTML = `
+        <div class="bg-white rounded-3xl p-6 max-w-sm w-full border-4 border-amber-400 text-center space-y-4 shadow-2xl">
+          <span class="text-4xl">💌</span>
+          <h4 class="text-xl font-bold text-slate-800">Sains Info</h4>
+          <p class="text-sm text-slate-600 leading-relaxed">${message}</p>
+          <button onclick="this.parentElement.parentElement.remove()" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-6 rounded-full border-b-4 border-amber-700 active:border-b-0 transition-all">
+            Oke, Siap! 👍
+          </button>
+        </div>
+      `;
+      document.body.appendChild(modal);
+    }
+
+    window.onload = () => {
+      goToPage('home');
+    };
+  </script>
+</body>
+</html>
